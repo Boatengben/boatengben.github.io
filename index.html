@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benjamin Boateng | 3D Artist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+    nav {
+      background: #000;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    .hero {
+      height: 90vh;
+      overflow: hidden;
+      position: relative;
+      background-color: #000;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .hero img.active {
+      opacity: 1;
+    }
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 4rem 2rem;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      background-color: #000;
+      color: #fff;
+    }
+    .about-img {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .about-content {
+      flex: 2;
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease-in-out;
+    }
+    .about-content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .about-content h3 {
+      margin-top: 2rem;
+    }
+    .about-content ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    .about-content ul li::before {
+      content: '\2022';
+      color: #ffcc00;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .gallery {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .gallery h2 {
+      margin-bottom: 2rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #000;
+      color: #aaa;
+    }
+    .contact-info {
+      margin-top: 1rem;
+    }
+    .social-icons img {
+      width: 30px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    .resume-download {
+      margin-top: 2rem;
+    }
+    .resume-download a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid #ffcc00;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s;
+    }
+    .resume-download a:hover {
+      background: #ffcc00;
+      color: #000;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        width: 100%;
+        top: 70px;
+        left: 0;
+        padding: 1rem 2rem;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .about-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Benjamin Boateng</div>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <img src="your-image1.jpg" class="active" alt="Hero 1">
+    <img src="your-image2.jpg" alt="Hero 2">
+    <img src="your-image3.jpg" alt="Hero 3">
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-img">
+      <img src="/mnt/data/bef25f107674587.5fac42aa9dd19.jpeg" alt="Benjamin Boateng">
+    </div>
+    <div class="about-content" id="aboutContent">
+      <h2>About Me</h2>
+      <h3>Experience</h3>
+      <ul>
+        <li>Freelance | 3D Artist | 2019 - Present</li>
+        <li>Junior 3D Artist | XYZ Studio | 2018 - 2019</li>
+      </ul>
+      <h3>Education</h3>
+      <ul>
+        <li>Graphic Design | National University | 2017 - Now</li>
+        <li>ArtCraft CG School | 3D Modelling | 2020</li>
+      </ul>
+      <h3>Skills</h3>
+      <ul>
+        <li>Creative eye and artistic sense</li>
+        <li>Detail-oriented in 2D and 3D composition</li>
+        <li>Collaborative, fast learner, team-oriented</li>
+        <li>Thrives in fast-paced work environments</li>
+      </ul>
+      <h3>Softwares</h3>
+      <ul>
+        <li>Zbrush, Maya, 3Ds Max</li>
+        <li>Substance Painter, Marmoset</li>
+        <li>Adobe Suite, Marvelous Designer</li>
+      </ul>
+      <div class="resume-download">
+        <a href="Benjamin_Boateng_Resume.pdf" download>Download Resume</a>
+      </div>
+      <div class="contact-info">
+        <p>Tel: +233 24 000 0000</p>
+        <div class="social-icons">
+          <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+          <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+          <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="your-art1.jpg" alt="Artwork 1">
+      <img src="your-art2.jpg" alt="Artwork 2">
+      <img src="your-art3.jpg" alt="Artwork 3">
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Benjamin Boateng. All rights reserved.
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.hero img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('show');
+    });
+
+    const aboutContent = document.getElementById('aboutContent');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(aboutContent);
+  </script>
+
+</body>
+</html>
