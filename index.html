@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Benjamin Boateng | 3D Artist</title>
+  
+  <!-- Favicon Links -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="images" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="images/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="images/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -68,89 +76,212 @@
       background: white;
       transition: all 0.3s ease;
     }
-    /* Hero Slider */
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      height: 90vh;
-      overflow: hidden;
-    }
 
-    .slides {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide {
+    /* Hero Section */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* stay aligned left */
+    padding-left: 5%;
+  }
+    .hero::before {
+      content: '';
       position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in;
-      background-size: cover;
-      background-position: center;
       top: 0;
       left: 0;
-      z-index: 0;
-    }
-
-    .slide.active {
-      opacity: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
-    .slider-nav {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 550px;
+      color: white;
       display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      z-index: 10;  /* Ensure buttons are above the slides */
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      /* background: rgba(0, 0, 0, 0.2); Black with slight transparency */
+      padding: 2rem;
+      border-radius: 10px; /* Optional: rounded corners */
+    }
+    .hero-content .main-title {
+      font-size: 38px;
+      font-weight: 600;
+      margin-bottom: 4rem;
+       /* Bright yellow for emphasis */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    } 
+    .hero-content h1 {
+      font-size: 3.0rem;
+      font-weight: 600;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-bottom: 0.7rem;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      
     }
 
-    .prev-btn, .next-btn {
-      background: rgba(0, 0, 0, 0.7);
-      color: #ffcc00;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 1rem;
-      transition: background 0.3s ease;
+    .hero-content p {
+      font-size: 1.0rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      opacity: 0.9;
     }
 
-    .prev-btn:hover, .next-btn:hover {
-      background: #000;
+    .cta-button {
+      display: inline-block;
+      background: #ffcc00;
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .indicator-container {
+    .cta-button:hover {
+      /* background:#faf2d0; */
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3);
+    }
+    
+    /* Dropping Texts Animation */
+    .dropping-texts {
+        display: inline-block;
+       position: relative;
+        }
+
+  .dropping-texts {
+  display: inline-block;
+  width: auto;
+  position: relative;
+}
+
+.dropping-texts div {
+  position: absolute;
+  top: 0;
+  left: -5rem;
+  margin-top: 3rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* or center if you want centered text */
+  color: #ffcc00;
+  font-size: 35px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideRotate 16s infinite;
+}
+
+        .dropping-texts div:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dropping-texts div:nth-child(2) {
+            animation-delay: 4s;
+        }
+
+        .dropping-texts div:nth-child(3) {
+            animation-delay: 8s;
+        }
+
+        .dropping-texts div:nth-child(4) {
+            animation-delay: 12s;
+        }
+
+        @keyframes slideRotate {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            6.25% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            18.75% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            25% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+        }
+
+    .scroll-indicator {
       position: absolute;
-      bottom: 10px;
+      bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 2;  /* Keep dots above slides */
+      z-index: 2;
+      color: white;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator i a{
+      text-decoration: none;
+      color: inherit;
     }
 
-    .indicator-dot {
-      width: 10px;
-      height: 10px;
-      background-color: #fff;
-      border-radius: 50%;
-      opacity: 0.5;
-      transition: opacity 0.3s ease;
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
     }
 
-    .indicator-dot.active {
-      opacity: 1;
-    }
+    @media (max-width: 768px) {
+      .hero {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        text-align: center;
+        justify-content: center;
+      }
 
-    /* End of Hero Slider */
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
 
      /* Resume Section */
+     .resume-header{
+        text-align:center; 
+        color:#ffcc00; 
+        margin-bottom:0.5rem;
+        margin-top: 10%;
+        font-size: 1.2rem;
+     }
      .resume {
       background-color: #111;
       color: white;
@@ -160,6 +291,7 @@
       gap: 60px;
       flex-wrap: wrap;
       justify-content: center;
+    
     }
 
     .resume .left-image {
@@ -168,10 +300,12 @@
 
     .resume .left-image img {
       width: 300px;
-      height: auto;
-      border-radius: 8px;
+      height: 300px;
+      border-radius: 50%;
       box-shadow: 0 4px 12px rgba(255, 204, 0, 0.2);
       transition: transform 0.3s ease;
+      object-fit: cover;
+      
     }
     
     .resume .left-image img:hover {
@@ -218,13 +352,20 @@
       margin-bottom: 16px;
     }
 
-    .resume .item {
+    .resume ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .resume li {
       margin-bottom: 12px;
       font-size: 18px;
+      line-height: 1.4;
     }
     /* End of Resume Section */
 
-    /* Instagram-style Portfolio Section */
+    /* Portfolio Section with Sliding Overlay */
     .portfolio {
       padding: 4rem 2rem;
       text-align: center;
@@ -255,39 +396,75 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 1;
+      transform: translateY(0);
     }
 
     .portfolio-item:hover img {
-      transform: scale(1.03);
+      transform: translateY(100%);
     }
 
+    /* Sliding White Overlay */
     .portfolio-item .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.95);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      text-align: center;
+      padding: 1rem;
+      box-sizing: border-box;
+      transform: translateY(-100%);
+      transition: transform 0.4s ease;
+      z-index: 2;
     }
 
     .portfolio-item:hover .overlay {
-      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .overlay h3 {
+      color: #333;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.3;
+    }
+
+    .overlay p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.4;
+    }
+
+    .overlay .meta {
+      color: #888;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
     .overlay-icons {
+      margin-top: 1rem;
       display: flex;
       gap: 1rem;
     }
 
     .overlay-icons i {
-      color: white;
+      color: #ffcc00;
       font-size: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .overlay-icons i:hover {
+      transform: scale(1.2);
     }
 
     /* Lightbox / Modal */
@@ -401,6 +578,18 @@
         border-left: none;
         border-top: 1px solid #333;
       }
+
+      .overlay h3 {
+        font-size: 1rem;
+      }
+
+      .overlay p {
+        font-size: 0.8rem;
+      }
+
+      .overlay .meta {
+        font-size: 0.7rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -485,12 +674,12 @@
     }
   </style>
 </head>
-<body >
+<body>
   <nav>
     <div class="logo">Benjamin Boateng</div>
     <ul id="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#resume">About</a></li>
+      <li><a href="#resume-header">About</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -501,56 +690,54 @@
     </div>
   </nav>
 
-  <!--BEGIN hero-slider -->
-  <section class="hero-slider" id="home">
-    <div class="slides">
-      <div class="slide" style="background-image: url('images/work_3_a_full.jpg');"></div>
-      <div class="slide" style="background-image: url('images/work_4_full.jpg');"></div>
-      <div class="slide" style="background-image: url('images/work_3_a_full.jpg');"></div>
-      <div class="slide" style="background-image: url('images/work_4_full.jpg');"></div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+          <h1 class="main-title"><span class="static-text">I Am A</span> <span class="dropping-texts">
+          <div>3D Designer</div>
+          <div>3D Interior <br>Designer</div>
+          <div>3D Architectural<br> Visualizer</div>
+          <div>Frontend <br>Developer</div>
+        </span>
+      </h1>
+      <p>Creating stunning 3D visualizations, architectural and interior renders, and immersive digital experiences that bring ideas to life.</p>
+      <a href="#portfolio" class="cta-button">View My Work</a>
     </div>
-
-    <!-- Slider Navigation -->
-    <div class="slider-nav">
-      <button class="prev-btn">❮</button>
-      <button class="next-btn">❯</button>
-    </div>
-
-    <!-- Progress Indicators (Dots) -->
-    <div class="indicator-container">
-      <div class="indicator-dot active"></div>
-      <div class="indicator-dot"></div>
-      <div class="indicator-dot"></div>
-      <div class="indicator-dot"></div>
+    <div class="scroll-indicator">
+      <i> <a href="#resume-header" class="fas fa-chevron-down" ></a></i>
     </div>
   </section>
-  <!-- End-hero SLIDER -->
  
   <section>
+      <div class="resume-header" id="resume-header">
+        <h2>Resume</h2>     
+      </div>
     <div class="resume" id="resume">
       <!-- Left-side Image -->
       <div class="left-image">
-        <img src="/images/about me_ben_pic_black.jpg" alt="Logo" />
-        <p> email:boatengbenjy@gmail.com</p>
+        <img src="/images/about me_ben_pic_b.jpg" alt="Logo" />
       </div>
   
       <!-- Right Content -->
       <div class="content">
-  
         <!-- Top Row: Experience and Education -->
         <div class="section-row">
           <div class="column">
             <h2>EXPERIENCE</h2>
-            <div class="item">Freelance 3D Artist | Artadal Studio | 2022 – Present</div>
-            <div class="item">3D Generalist | Freelance | 2020 – 2022</div>
+            <ul>
+              <li>Freelance 3D Artist | Artadal Studio | 2022 – Present</li>
+              <li>3D Generalist | Freelance | 2020 – 2022</li>
+            </ul>
           </div>
   
           <div class="v-divider"></div>
   
           <div class="column">
             <h2>EDUCATION</h2>
-            <div class="item">Google UX Design Certificate | 2023</div>
-            <div class="item">Bachelor of Fine Arts | 3D Design | 2020</div>
+            <ul>
+              <li>Bachelor's degree in Integrated Art and Industry </li>
+              <li></li>
+            </ul>
           </div>
         </div>
   
@@ -561,27 +748,31 @@
         <div class="section-row">
           <div class="column">
             <h2>SKILLS</h2>
-            <div class="item">3D Modeling and Texturing</div>
-            <div class="item">Lighting and Rendering</div>
-            <div class="item">Game Asset Creation</div>
-            <div class="item">Real-time Rendering</div>
+            <ul>
+              <li>3D Modeling and Texturing</li>
+              <li>Lighting and Rendering</li>
+              <li>Game Asset Creation</li>
+              <li>Real-time Rendering</li>
+            </ul>
           </div>
   
           <div class="v-divider"></div>
   
           <div class="column">
             <h2>SOFTWARES</h2>
-            <div class="item">Blender</div>
-            <div class="item">Substance Painter</div>
-            <div class="item">Photoshop</div>
-            <div class="item">Unreal Engine</div>
+            <ul>
+              <li>Blender</li>
+              <li>Substance Painter</li>
+              <li>Photoshop</li>
+              <li>Unreal Engine</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Instagram-style Portfolio Section -->
+  <!-- Portfolio Section with Sliding Overlay -->
   <section class="portfolio" id="portfolio">
     <h2>Portfolio</h2>
     <div class="portfolio-grid">
@@ -612,59 +803,40 @@
     </div>
   </div>
 
+  
   <footer id="contact">
-    <p>© 2025 Benjamin Boateng. All rights reserved.</p>
+    <div href="mailto:boatengbengy@gmail.com" class="social-icon">
+    <i class="fas fa-envelope" style="margin-bottom: 2rem;"></i>
+    boatengbengy@gmail.com
+   </div>
     <div class="social-links">
       <a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
       <a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
       <a href="https://www.linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
       <a href="https://www.twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
     </div>
+     <p>© 2025 Benjamin Boateng. All rights reserved.</p>
     
   </footer>
   
   <script>
-    // Hero Slider Functionality
-    const slides = document.querySelector('.slides');
-    const slideElements = document.querySelectorAll('.slide');
-    const indicatorDots = document.querySelectorAll('.indicator-dot');
-    const prevButton = document.querySelector('.prev-btn');
-    const nextButton = document.querySelector('.next-btn');
-    
-    let currentSlide = 0;
-    const totalSlides = slideElements.length;
-  
-    function showSlide(index) {
-      // Hide all slides and remove active class from dots
-      slideElements.forEach((slide, i) => {
-        slide.classList.remove('active');
-        indicatorDots[i].classList.remove('active');
-      });
-  
-      // Show the current slide and activate the corresponding dot
-      slideElements[index].classList.add('active');
-      indicatorDots[index].classList.add('active');
+    // Get uploaded image data and set as hero background
+    async function setHeroBackground() {
+      try {
+        const heroSection = document.querySelector('.hero');
+        const imageData = await window.fs.readFile('0_5.jpg');
+        const blob = new Blob([imageData], { type: 'image/jpeg' });
+        const imageUrl = URL.createObjectURL(blob);
+        heroSection.style.backgroundImage = `url(${imageUrl})`;
+      } catch (error) {
+        console.error('Error loading hero image:', error);
+        // Fallback to default background
+        document.querySelector('.hero').style.backgroundImage = "url('images/hero_background_r.png')";
+      }
     }
-  
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-    }
-  
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(currentSlide);
-    }
-  
-    // Auto-change slides every 3 seconds
-    setInterval(nextSlide, 3000);
-  
-    // Button event listeners
-    prevButton.addEventListener('click', prevSlide);
-    nextButton.addEventListener('click', nextSlide);
-  
-    // Initialize slider
-    showSlide(currentSlide);
+
+    // Initialize hero background
+    setHeroBackground();
     
     // Mobile Menu Toggle
     const hamburger = document.getElementById('hamburger');
@@ -777,8 +949,12 @@
       portfolioItem.innerHTML = `
         <img src="${item.image}" alt="${item.title}">
         <div class="overlay">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <div class="meta">${item.date} | ${item.software}</div>
           <div class="overlay-icons">
             <i class="fas fa-search-plus"></i>
+            <i class="fas fa-external-link-alt"></i>
           </div>
         </div>
       `;
@@ -846,6 +1022,20 @@
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') prevLightboxItem();
       if (e.key === 'ArrowRight') nextLightboxItem();
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
     });
   </script>
 </body>
