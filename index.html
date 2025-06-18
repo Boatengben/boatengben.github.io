@@ -558,15 +558,15 @@
     }
 
     .lightbox-nav button {
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
+       background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
     }
 
     .lightbox-nav button:hover {
@@ -797,26 +797,25 @@
 
   <!-- Lightbox / Modal -->
   <div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-      <div class="lightbox-image">
-        <img src="" alt="Portfolio Item" id="lightbox-img">
-      </div>
-      <div class="lightbox-details">
-        <h3 id="lightbox-title">Project Title</h3>
-        <p id="lightbox-description">Project description will appear here with details about the work.</p>
-        <div class="lightbox-meta">
-          <p><strong>Created:</strong> <span id="lightbox-date">June 2025</span></p>
-          <p><strong>Software:</strong> <span id="lightbox-software">Blender, Substance Painter</span></p>
-          <p><strong>Tags:</strong> <span id="lightbox-tags">#3D #Modeling #Design</span></p>
-        </div>
-      </div>
-      <button class="lightbox-close" id="lightbox-close">✕</button>
-      <div class="lightbox-nav">
-        <button id="lightbox-prev">❮</button>
-        <button id="lightbox-next">❯</button>
-      </div>
+  <div class="lightbox-content">
+    <div class="lightbox-image">
+      <img id="lightbox-img" />
+    </div>
+    <div class="lightbox-details">
+      <h2 id="lightbox-title"></h2>
+      <p id="lightbox-description"></p>
+      <p><strong>Date:</strong> <span id="lightbox-date"></span></p>
+      <p><strong>Software:</strong> <span id="lightbox-software"></span></p>
+      <p><strong>Tags:</strong> <span id="lightbox-tags"></span></p>
     </div>
   </div>
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <div class="lightbox-nav">
+    <button id="lightbox-prev">❮</button>
+    <button id="lightbox-next">❯</button>
+  </div>
+</div>
+
 
   
   <footer id="contact">
@@ -957,7 +956,6 @@
         <div class="meta">${item.date || ''} | ${item.software}</div>
         <div class="overlay-icons">
           <i class="fas fa-search-plus"></i>
-          <i class="fas fa-external-link-alt"></i>
         </div>
       </div>
     `;
