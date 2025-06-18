@@ -835,219 +835,211 @@
   </footer>
   
   <script>
-    // Get uploaded image data and set as hero background
-    async function setHeroBackground() {
-      try {
-        const heroSection = document.querySelector('.hero');
-        const imageData = await window.fs.readFile('0_5.jpg');
-        const blob = new Blob([imageData], { type: 'image/jpeg' });
-        const imageUrl = URL.createObjectURL(blob);
-        heroSection.style.backgroundImage = `url(${imageUrl})`;
-      } catch (error) {
-        console.error('Error loading hero image:', error);
-        // Fallback to default background
-        document.querySelector('.hero').style.backgroundImage = "url('images/hero_background_r.png')";
-      }
+  // Set hero background image
+  async function setHeroBackground() {
+    try {
+      const heroSection = document.querySelector('.hero');
+      const imageData = await window.fs.readFile('0_5.jpg');
+      const blob = new Blob([imageData], { type: 'image/jpeg' });
+      const imageUrl = URL.createObjectURL(blob);
+      heroSection.style.backgroundImage = `url(${imageUrl})`;
+    } catch (error) {
+      console.error('Error loading hero image:', error);
+      document.querySelector('.hero').style.backgroundImage = "url('images/hero_background_r.png')";
     }
+  }
+  setHeroBackground();
 
-    // Initialize hero background
-    setHeroBackground();
-    
-    // Mobile Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
     });
-    
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('nav ul li a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-    
-    // Portfolio Grid & Lightbox Functionality
-    const portfolioGrid = document.querySelector('.portfolio-grid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxDescription = document.getElementById('lightbox-description');
-    const lightboxDate = document.getElementById('lightbox-date');
-    const lightboxSoftware = document.getElementById('lightbox-software');
-    const lightboxTags = document.getElementById('lightbox-tags');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    
-    // Portfolio items data
-    const portfolioItems = [
-      {
-        image: 'images/Portfolio/Ha_Kitchen_WideView.jpg',
-        title: 'Kitchen Design',
-        description: 'A modern kitchen design project showcasing sleek cabinetry and innovative storage solutions.',
-        software: 'Sketchup, Cinema 4D, Photoshop', 
-        tags: '#Interior #Design #3D'
-      },
-      {
-        image: 'images/Portfolio/Hi_BedRoom_WideView.jpg',
-        title: 'Bedroom Design',
-        description: 'A cozy bedroom design project with a focus on comfort and relaxation.',
-        software: 'Sketchup, Cinema 4D, Photoshop', 
-        tags: '#Bedroom #Bed #3D'
-      },
-      {
-        image: 'images/Portfolio/Ma_Walk-in-Closet_WideView.jpg',
-        title: 'Walk-In-Closet',
-        description: 'A spacious walk-in closet design featuring custom shelving and elegant lighting.',
-        software: 'Sketchup, Cinema 4D, Photoshop',
-        tags: '#Walk-in Closet #Wardrobe design #Closet'
-      },
-      {
-        image: 'images/Portfolio/AL_BedRoom_WideView.jpg',
-        title: 'Luxury Bedroom',
-        description: 'A luxury bedroom design with high-end finishes and a serene atmosphere.',
-        software: 'Sketchup, Cinema 4D, Photoshop', 
-        tags: '#Bedroom #Bed #3D'
-      },
-      {
-        image: 'images/work_3_a_full.jpg',
-        title: 'Game Character',
-        description: 'A stylized game character designed for a mobile RPG with optimized topology.',
-        date: 'September 2024',
-        software: 'Blender, Substance Painter',
-        tags: '#Character #Game #Mobile'
-      },
-      {
-        image: 'images/work_4_full.jpg',
-        title: 'Architectural Visualization',
-        description: 'A detailed architectural visualization of a modern office complex with surrounding landscape.',
-        date: 'August 2024',
-        software: 'Blender, Photoshop',
-        tags: '#Architecture #Visualization #Commercial'
-      },
-      {
-        image: 'images/work_3_a_full.jpg',
-        title: 'Organic Product Design',
-        description: 'A concept product design for a biodegradable consumer electronics case.',
-        date: 'July 2024',
-        software: 'Blender, Substance Painter',
-        tags: '#Product #Design #Organic'
-      },
-      {
-        image: 'images/work_4_full.jpg',
-        title: 'Fantasy Environment',
-        description: 'A detailed fantasy environment for a role-playing game featuring unique vegetation and terrain.',
-        date: 'May 2024',
-        software: 'Blender, Unreal Engine',
-        tags: '#Fantasy #Environment #Game'
-      },
-      {
-        image: 'images/work_3_a_full.jpg',
-        title: 'Vehicle Concept',
-        description: 'A futuristic vehicle concept designed for an upcoming sci-fi film.',
-        date: 'April 2024',
-        software: 'Blender, Substance Painter',
-        tags: '#Vehicle #Concept #SciFi'
-      }
-    ];
-    
-    // Generate portfolio grid items
-    portfolioItems.forEach((item, index) => {
-      const portfolioItem = document.createElement('div');
-      portfolioItem.className = 'portfolio-item';
-      portfolioItem.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <div class="overlay">
-          <h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <div class="meta">${item.date} | ${item.software}</div>
-          <div class="overlay-icons">
-            <i class="fas fa-search-plus"></i>
-            <i class="fas fa-external-link-alt"></i>
-          </div>
+  });
+
+  // Portfolio & Lightbox
+  const portfolioGrid = document.querySelector('.portfolio-grid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDescription = document.getElementById('lightbox-description');
+  const lightboxDate = document.getElementById('lightbox-date');
+  const lightboxSoftware = document.getElementById('lightbox-software');
+  const lightboxTags = document.getElementById('lightbox-tags');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+
+  const portfolioItems = [
+    {
+      image: 'images/Portfolio/Ha_Kitchen_WideView.jpg',
+      title: 'Kitchen Design',
+      description: 'A modern kitchen design project showcasing sleek cabinetry and innovative storage solutions.',
+      software: 'Sketchup, Cinema 4D, Photoshop',
+      tags: '#Interior #Design #3D'
+    },
+    {
+      image: 'images/Portfolio/Hi_BedRoom_WideView.jpg',
+      title: 'Bedroom Design',
+      description: 'A cozy bedroom design project with a focus on comfort and relaxation.',
+      software: 'Sketchup, Cinema 4D, Photoshop',
+      tags: '#Bedroom #Bed #3D'
+    },
+    {
+      image: 'images/Portfolio/Ma_Walk-in-Closet_WideView.jpg',
+      title: 'Walk-In-Closet',
+      description: 'A spacious walk-in closet design featuring custom shelving and elegant lighting.',
+      software: 'Sketchup, Cinema 4D, Photoshop',
+      tags: '#Walk-in Closet #Wardrobe design #Closet'
+    },
+    {
+      image: 'images/Portfolio/AL_BedRoom_WideView.jpg',
+      title: 'Luxury Bedroom',
+      description: 'A luxury bedroom design with high-end finishes and a serene atmosphere.',
+      software: 'Sketchup, Cinema 4D, Photoshop',
+      tags: '#Bedroom #Bed #3D'
+    },
+    {
+      image: 'images/work_3_a_full.jpg',
+      title: 'Game Character',
+      description: 'A stylized game character designed for a mobile RPG with optimized topology.',
+      date: 'September 2024',
+      software: 'Blender, Substance Painter',
+      tags: '#Character #Game #Mobile'
+    },
+    {
+      image: 'images/Porfolio/Fr_Kitchen_WideView.jpg',
+      title: 'Modern Kitchen',
+      description: 'A modern kitchen design featuring sleek cabinetry and innovative storage solutions.',
+      date: '2024',
+      software: 'Blender, Photoshop',
+      tags: '#Interior #Design #Kitchen'
+    },
+    {
+      image: 'images/work_3_a_full.jpg',
+      title: 'Organic Product Design',
+      description: 'A concept product design for a biodegradable consumer electronics case.',
+      date: 'July 2024',
+      software: 'Blender, Substance Painter',
+      tags: '#Product #Design #Organic'
+    },
+    {
+      image: 'images/work_4_full.jpg',
+      title: 'Fantasy Environment',
+      description: 'A detailed fantasy environment for a role-playing game featuring unique vegetation and terrain.',
+      date: 'May 2024',
+      software: 'Blender, Unreal Engine',
+      tags: '#Fantasy #Environment #Game'
+    },
+    {
+      image: 'images/work_3_a_full.jpg',
+      title: 'Vehicle Concept',
+      description: 'A futuristic vehicle concept designed for an upcoming sci-fi film.',
+      date: 'April 2024',
+      software: 'Blender, Substance Painter',
+      tags: '#Vehicle #Concept #SciFi'
+    }
+  ];
+
+  portfolioItems.forEach((item, index) => {
+    const portfolioItem = document.createElement('div');
+    portfolioItem.className = 'portfolio-item';
+    portfolioItem.innerHTML = `
+      <img src="${item.image}" alt="${item.title}">
+      <div class="overlay">
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <div class="meta">${item.date || ''} | ${item.software}</div>
+        <div class="overlay-icons">
+          <i class="fas fa-search-plus"></i>
+          <i class="fas fa-external-link-alt"></i>
         </div>
-      `;
-      
-      // Add click event to open lightbox
-      portfolioItem.addEventListener('click', () => {
-        openLightbox(index);
-      });
-      
-      portfolioGrid.appendChild(portfolioItem);
-    });
-    
-    let currentLightboxIndex = 0;
-    
-    // Open lightbox with specific item
-    function openLightbox(index) {
-      currentLightboxIndex = index;
-      const item = portfolioItems[index];
-      
-      lightboxImg.src = item.image;
-      lightboxTitle.textContent = item.title;
-      lightboxDescription.textContent = item.description;
-      lightboxDate.textContent = item.date;
-      lightboxSoftware.textContent = item.software;
-      lightboxTags.textContent = item.tags;
-      
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      </div>
+    `;
+    portfolioItem.addEventListener('click', () => openLightbox(index));
+    portfolioGrid.appendChild(portfolioItem);
+  });
+
+  let currentLightboxIndex = 0;
+
+  function openLightbox(index) {
+    currentLightboxIndex = index;
+    const item = portfolioItems[index];
+    lightboxImg.src = item.image;
+    lightboxTitle.textContent = item.title;
+    lightboxDescription.textContent = item.description;
+    lightboxDate.textContent = item.date || '';
+    lightboxSoftware.textContent = item.software;
+    lightboxTags.textContent = item.tags;
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Push state for back button handling
+    if (!history.state || !history.state.lightboxOpen) {
+      history.pushState({ lightboxOpen: true }, '', '#lightbox');
     }
-    
-    // Close lightbox
-    function closeLightbox() {
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+
+    // Handle back button clean up
+    if (history.state && history.state.lightboxOpen) {
+      history.back();
+    }
+  }
+
+  function prevLightboxItem() {
+    currentLightboxIndex = (currentLightboxIndex - 1 + portfolioItems.length) % portfolioItems.length;
+    openLightbox(currentLightboxIndex);
+  }
+
+  function nextLightboxItem() {
+    currentLightboxIndex = (currentLightboxIndex + 1) % portfolioItems.length;
+    openLightbox(currentLightboxIndex);
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', prevLightboxItem);
+  lightboxNext.addEventListener('click', nextLightboxItem);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevLightboxItem();
+    if (e.key === 'ArrowRight') nextLightboxItem();
+  });
+
+  // ⬅️ Back button handling
+  window.addEventListener('popstate', (event) => {
+    if (lightbox.classList.contains('active')) {
       lightbox.classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
+      document.body.style.overflow = '';
     }
-    
-    // Navigate to previous item
-    function prevLightboxItem() {
-      currentLightboxIndex = (currentLightboxIndex - 1 + portfolioItems.length) % portfolioItems.length;
-      openLightbox(currentLightboxIndex);
-    }
-    
-    // Navigate to next item
-    function nextLightboxItem() {
-      currentLightboxIndex = (currentLightboxIndex + 1) % portfolioItems.length;
-      openLightbox(currentLightboxIndex);
-    }
-    
-    // Event listeners for lightbox controls
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', prevLightboxItem);
-    lightboxNext.addEventListener('click', nextLightboxItem);
-    
-    // Close lightbox when clicking outside the content
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
+  });
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
-    
-    // Keyboard navigation for lightbox
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prevLightboxItem();
-      if (e.key === 'ArrowRight') nextLightboxItem();
-    });
+  });
+</script>
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
